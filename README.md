@@ -74,6 +74,41 @@ Este projeto foi criado com o objetivo de colocar em prática:
 Todo o processo de desenvolvimento contou com o suporte do **Claude (Anthropic)**, que ajudou na tomada de decisões, resolução de dúvidas e boas práticas — sempre com foco no meu aprendizado.
 
 ---
+## 🎨 Como esse README foi feito
+
+Este README foi criado usando **Markdown** — a linguagem de formatação do GitHub. Aqui estão os truques usados:
+
+**Badges coloridas** — geradas pelo [shields.io](https://shields.io):
+```markdown
+![Nome](https://img.shields.io/badge/texto-cor?style=for-the-badge)
+```
+
+**Centralizar conteúdo** — o GitHub aceita HTML dentro do Markdown:
+```markdown
+<div align="center">
+  Conteúdo centralizado aqui
+</div>
+```
+
+**Checklist interativa:**
+```markdown
+- [x] Tarefa concluída
+- [ ] Tarefa pendente
+```
+
+**Tabelas:**
+```markdown
+| Coluna 1 | Coluna 2 |
+|---|---|
+| dado | dado |
+```
+
+**Citação em destaque:**
+```markdown
+> 💡 Seu texto aqui fica destacado
+```
+
+> 📚 Dica!!!Quer aprender mais? Pesquise por **"GitHub Markdown Guide"**!
 
 ## 📄 Licença
 
