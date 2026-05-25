@@ -24,11 +24,11 @@ O **SKYREAD** é um site de previsão do tempo criado como projeto de aprendizad
 
 ## ✨ Funcionalidades
 
-- [ ] Busca de clima por cidade
-- [ ] Exibição da temperatura atual
-- [ ] Previsão para os próximos dias
-- [ ] Ícones dinâmicos de acordo com o clima
-- [ ] Design responsivo para mobile e desktop
+- [x] Busca de clima por cidade
+- [x] Exibição da temperatura atual
+- [x] Previsão para os próximos dias
+- [x] Ícones dinâmicos de acordo com o clima
+- [x] Design responsivo para mobile e desktop
 
 ---
 
