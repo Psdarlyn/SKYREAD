@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- DOCTYPE: diz ao navegador que este é um documento HTML5 (a versão mais moderna do HTML) -->
+
+<html lang="pt-BR">
+<!-- <html>: tag raiz que envolve TODO o conteúdo da página -->
+<!-- lang="pt-BR": informa ao navegador e leitores de tela que o idioma é português do Brasil -->
+
+<head>
+  <!-- <head>: área invisível da página — contém configurações, título e links para CSS/fontes -->
+
+  <meta charset="UTF-8">
+  <!-- <meta charset>: define a codificação de caracteres. UTF-8 suporta acentos, emojis, etc. -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta viewport>: faz o site se adaptar ao tamanho da tela (responsividade mobile) -->
+
+  <title>SKYREAD 🌦️</title>
+  <!-- <title>: texto que aparece na aba do navegador -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+  <!-- <link>: conecta o HTML a um arquivo externo -->
+  <!-- Aqui estamos importando duas fontes do Google Fonts:
+       - Righteous: fonte display para o título principal
+       - Nunito: fonte arredondada e amigável para o conteúdo -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet">: conecta o arquivo CSS que estiliza a página -->
+
+</head>
+
+<body>
+  <!-- <body>: tudo que aparece visualmente na página fica aqui -->
+
+  <!-- ========== TELA DE FUNDO ANIMADA ========== -->
+  <div class="bg-animated">
+    <!-- <div>: elemento genérico de bloco, usado para agrupar e estilizar conteúdo -->
+    <!-- class="bg-animated": nome da classe CSS que vai estilizar este elemento -->
+
+    <!-- Bolinhas decorativas que flutuam no fundo da página -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- ========== CONTAINER PRINCIPAL ========== -->
+  <div class="container">
+    <!-- container: centraliza e limita a largura do conteúdo principal -->
+
+    <!-- ========== CABEÇALHO ========== -->
+    <header class="header">
+      <!-- <header>: tag semântica que representa o cabeçalho da página -->
+      <!-- Semântica = usar a tag certa para cada conteúdo (ajuda acessibilidade e SEO) -->
+
+      <h1 class="logo">🌤️ SKYREAD</h1>
+      <!-- <h1>: título principal da página (o mais importante, use só um por página) -->
+
+      <p class="tagline">Leia o céu em segundos</p>
+      <!-- <p>: parágrafo de texto -->
+
+    </header>
+
+    <!-- ========== SEÇÃO DE BUSCA ========== -->
+    <section class="search-section">
+      <!-- <section>: tag semântica que agrupa um bloco de conteúdo relacionado -->
+
+      <div class="search-box">
+        <!-- Caixa de busca que contém o input e o botão -->
+
+        <input
+          type="text"
+          id="city-input"
+          class="search-input"
+          placeholder="Digite o nome da cidade..."
+          autocomplete="off"
+        >
+        <!-- <input>: campo onde o usuário digita texto -->
+        <!-- type="text": define que é um campo de texto simples -->
+        <!-- id="city-input": identificador único, usado pelo JavaScript para pegar o valor digitado -->
+        <!-- placeholder: texto cinza que aparece quando o campo está vazio -->
+        <!-- autocomplete="off": desativa sugestões automáticas do navegador -->
+
+        <button id="search-btn" class="search-btn" onclick="buscarClima()">
+          🔍
+        </button>
+        <!-- <button>: botão clicável -->
+        <!-- id="search-btn": identificador usado pelo JS -->
+        <!-- onclick="buscarClima()": chama a função JavaScript quando o botão é clicado -->
+
+      </div>
+
+      <!-- Mensagem de erro que aparece quando a cidade não é encontrada -->
+      <p id="erro" class="erro-msg" style="display:none;">
+        ❌ Cidade não encontrada. Tente novamente!
+      </p>
+      <!-- style="display:none": esconde o elemento por padrão (o JS mostra quando necessário) -->
+
+    </section>
+
+    <!-- ========== CARD PRINCIPAL DO CLIMA ========== -->
+    <main id="resultado" class="resultado" style="display:none;">
+      <!-- <main>: tag semântica que representa o conteúdo principal da página -->
+      <!-- id="resultado": o JS usa esse id para mostrar/esconder este bloco -->
+
+      <!-- Card com informações da cidade e temperatura -->
+      <div class="weather-card">
+
+        <!-- Cabeçalho do card: cidade e país -->
+        <div class="card-header">
+          <h2 id="cidade-nome" class="cidade-nome"></h2>
+          <!-- <h2>: título secundário — nome da cidade virá aqui via JavaScript -->
+
+          <span id="cidade-pais" class="cidade-pais"></span>
+          <!-- <span>: elemento genérico INLINE (não quebra linha, diferente do div) -->
+          <!-- Aqui vai a sigla do país ex: BR, US -->
+        </div>
+
+        <!-- Ícone e temperatura principal -->
+        <div class="temp-principal">
+          <img id="clima-icone" class="clima-icone" src="" alt="ícone do clima">
+          <!-- <img>: exibe uma imagem -->
+          <!-- src="": o link da imagem virá do JavaScript (API do OpenWeatherMap) -->
+          <!-- alt: texto alternativo para acessibilidade (leitores de tela) -->
+
+          <div class="temp-info">
+            <span id="temperatura" class="temperatura"></span>
+            <!-- Aqui vai a temperatura em °C -->
+
+            <span id="descricao" class="descricao"></span>
+            <!-- Aqui vai a descrição do clima ex: "céu limpo", "nublado" -->
+          </div>
+        </div>
+
+        <!-- Grade com informações extras do clima -->
+        <div class="detalhes-grid">
+          <!-- CSS Grid: organiza os cards de detalhe em colunas automaticamente -->
+
+          <!-- Card: Sensação Térmica -->
+          <div class="detalhe-card">
+            <span class="detalhe-icone">🌡️</span>
+            <span class="detalhe-label">Sensação</span>
+            <span id="sensacao" class="detalhe-valor"></span>
+          </div>
+
+          <!-- Card: Umidade do Ar -->
+          <div class="detalhe-card">
+            <span class="detalhe-icone">💧</span>
+            <span class="detalhe-label">Umidade</span>
+            <span id="umidade" class="detalhe-valor"></span>
+          </div>
+
+          <!-- Card: Velocidade do Vento -->
+          <div class="detalhe-card">
+            <span class="detalhe-icone">💨</span>
+            <span class="detalhe-label">Vento</span>
+            <span id="vento" class="detalhe-valor"></span>
+          </div>
+
+          <!-- Card: Visibilidade -->
+          <div class="detalhe-card">
+            <span class="detalhe-icone">👁️</span>
+            <span class="detalhe-label">Visibilidade</span>
+            <span id="visibilidade" class="detalhe-valor"></span>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- ========== RODAPÉ ========== -->
+    <footer class="footer">
+      <!-- <footer>: tag semântica para o rodapé da página -->
+      <p>Feito com 💙 por <strong>Ingrid</strong> enquanto aprendia a programar</p>
+      <!-- <strong>: deixa o texto em negrito e indica importância semântica -->
+    </footer>
+
+  </div>
+  <!-- Fim do container principal -->
+
+  <script src="script.js"></script>
+  <!-- <script src>: carrega o arquivo JavaScript externo -->
+  <!-- IMPORTANTE: fica no fim do body para garantir que o HTML já carregou antes do JS rodar -->
+
+</body>
+</html>
